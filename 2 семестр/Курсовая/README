@@ -1,0 +1,80 @@
+NAME
+    sort - sort an array
+
+SYNOPSIS
+    #include <iostream>
+
+    template <typename T> void sort(T *array, int size, int elemsize, int SORT_DIRECTION, int SORT_METHOD) {
+    if(*array == 0) {
+        std::cout << "Массив не содержит элементов" << std::endl;
+        exit(0);
+    }
+    else if(size < 1) {
+        std::cout << "Количество элементов массива меньше единицы" << std::endl;
+        exit(0);
+    }
+    else if(size == 1) {
+        std::cout << "Массив из одного элемента уже отсортирован" << std::endl;
+        exit(0);
+    }
+    switch (SORT_METHOD) {
+        case 0:
+            bubble_sort(array, size, SORT_DIRECTION);
+            break;
+        case 1:
+            insertion_sort(array, size, SORT_DIRECTION);
+            break;
+        case 2:
+            selection_sort(array, size, SORT_DIRECTION);
+            break;
+        case 3:
+            comb_sort(array, size, SORT_DIRECTION);
+            break;
+        case 4:
+            shell_sort(array, size, SORT_DIRECTION);
+            break;
+        case 5:
+            merge_sort(array, size, SORT_DIRECTION);
+            break;
+        case 6:
+            quick_sort(array, size, SORT_DIRECTION);
+            break;
+        case 7:
+            heap_sort(array, size, SORT_DIRECTION);
+            break;
+        default:
+            std::cout << "SOMETHING WENT WRONG" << std::endl;
+    }
+    return print_array(array, size);
+}
+
+DESCRIPTION
+    The sort() function sorts an array of T* type with size elements of size elemsize.
+    The base argument points to the start of the array.
+    The content of the array are sorted in ascending or discending order according to a comp function, which is called with two arguments that point to the objects being compared, and SORT_DIRECTION. 
+     The comparison function return an -1, 0 or 1 if the first argument is considered to be respectively less than, equal to, or greater than the second.  If two members compare as
+       equal, their order in the sorted array is undefined.
+    Depending on SORT_DIRECTION array elements swapped how we need.
+
+RETURN VALUE
+    The sort() gunction return no value.
+
+VERSIONS
+    sort() is in version 1.0.
+
+NOTES
+    sort() function dont comapre std::strings because of move() function.
+
+EXAMPLE
+    Following program sorts the char array in ascending direction with heap sort:
+    
+    #include "sort.hpp"
+
+    int main() {
+        char arr[] = {'a', 'c', 'e', 'b', 'd'};
+        SORT_METOD = heap;
+        SORT_DIRECTION = ascending;
+        sort(arr, sizeof(arr)/sizeof(char), sizeof(double), SORT_DIRECTION, SORT_METOD);
+    }
+    
+
